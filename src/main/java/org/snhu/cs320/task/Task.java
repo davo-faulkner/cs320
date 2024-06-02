@@ -1,4 +1,4 @@
-package task;
+package org.snhu.cs320.task;
 
 import org.snhu.cs320.exceptions.ValidationException;
 import org.snhu.cs320.validation.Validation;
