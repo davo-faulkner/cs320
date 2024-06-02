@@ -28,6 +28,9 @@ public class TaskService {
 		
 		if (existing == null) return false;
 		
+		// Validates updated Task before adding it to database.
+		updated.validate();
+		
 		existing.setName(updated.getName());
 		existing.setDescription(updated.getDescription());
 		

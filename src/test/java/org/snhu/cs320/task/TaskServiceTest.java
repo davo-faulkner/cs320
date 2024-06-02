@@ -23,30 +23,51 @@ public class TaskServiceTest {
 	}
 	
 	@Test
-	void delete() throws ValidationException {
-		TaskService.add(new Task("12345", "Name", "Description"));
-		TaskService.delete("12345");
+	void addExistingId() throws ValidationException {
+		Task task = new Task("12345", "Name", "Description");
+		TaskService.add(task);
+		assertThat(TaskService.TASK_DATABASE)
+		.containsEntry("12345", task);
+		assertThat(TaskService.add(task)).isFalse();
+	}
+	
+	@Test
+	void deleteSuccess() throws ValidationException {
+		Task task = new Task("12345", "Name", "Description");
+		assertThat(TaskService.add(task)).isTrue();
+		assertThat(TaskService.delete("12345")).isTrue();
 		assertThat(TaskService.TASK_DATABASE)
 			.doesNotContainKey("12345");
 	}
 	
 	@Test
+	void deleteNonExisting() throws ValidationException {
+		assertThat(TaskService.delete("12345")).isFalse();
+	}
+	
+	@Test
 	void updateSuccess() throws ValidationException {
-		TaskService.add(new Task("12345", "Name", "Description"));
+		TaskService.add(new Task("12345", "Name", "Desctiption"));
 		
-		Task updated = new Task("12345", "Good Name", "Bad Description");
+		Task updated = new Task("12345", "New Name", "Old Description");
 		assertThat(TaskService.update("12345", updated)).isTrue();
 		
 		assertThat(TaskService.TASK_DATABASE)
 			.extracting("12345")
-			.hasFieldOrPropertyWithValue("name", "Good Name");
+			.hasFieldOrPropertyWithValue("name", "New Name");
+	}
+	
+	@Test
+	void updateNonExistent() throws ValidationException {
+		Task updated = new Task("12345", "Name", "Description");
+		assertThat(TaskService.update("12345", updated)).isFalse();
 	}
 	
 	@Test
 	void updateFail() throws ValidationException {
 		TaskService.add(new Task("12345", "Name", "Description"));
 		
-		Task updated = new Task("12345", "Good Name", "Description");
+		Task updated = new Task("12345", "New Name", "Old Description");
 		updated.setDescription(null);
 		
 		assertThatThrownBy(() -> TaskService.update("12345", updated))
