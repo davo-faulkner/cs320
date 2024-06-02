@@ -7,7 +7,8 @@ import org.snhu.cs320.exceptions.ValidationException;
 
 public class ContactService {
 	
-	static Map<String, Contact> CONTACT_DATABASE = new ConcurrentHashMap<String, Contact>();
+	static Map<String, Contact> CONTACT_DATABASE = new ConcurrentHashMap<String, 
+			Contact>();
 	
 	private ContactService() {}
 	
@@ -21,7 +22,8 @@ public class ContactService {
 		return CONTACT_DATABASE.remove(id) != null;
 	}
 	
-	public static boolean update(String id, Contact updated) throws ValidationException {
+	public static boolean update(String id, Contact updated) 
+			throws ValidationException {
 		Contact existing = CONTACT_DATABASE.get(id);
 		
 		if (existing == null) return false;
