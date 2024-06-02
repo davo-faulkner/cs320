@@ -25,12 +25,12 @@ public class Task {
 		Validation.validateLength(id, "id", 1, 10);
 		
 		// Name
-		Validation.validateNotBlank(id, "id");
-		Validation.validateLength(id, "id", 1, 20);
+		Validation.validateNotBlank(name, "name");
+		Validation.validateLength(name, "name", 1, 20);
 		
 		// Description
-		Validation.validateNotBlank(id, "id");
-		Validation.validateLength(id, "id", 1, 50);
+		Validation.validateNotBlank(description, "description");
+		Validation.validateLength(description, "description", 1, 50);
 	}
 	
 	public String getName() {
