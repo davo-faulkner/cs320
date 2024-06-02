@@ -11,7 +11,8 @@ public class Contact {
 	private String phone;
 	private String address;
 	
-	public Contact(String id, String firstName, String lastName, String phone, String address) throws ValidationException {
+	public Contact(String id, String firstName, String lastName, String phone, 
+			String address) throws ValidationException {
 		super();
 		this.id = id;
 		this.firstName = firstName;

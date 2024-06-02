@@ -12,7 +12,8 @@ class ContactTest {
 
 	@Test
 	void testSuccessPath() throws ValidationException {
-		Contact contact = new Contact("1", "First", "Last", "5553334444", "1234 Loblolly Lane");
+		Contact contact = new Contact("1", "First", "Last", "5553334444", 
+				"1234 Loblolly Lane");
 		assertThat(contact)
 			.isNotNull()
 			.hasFieldOrPropertyWithValue("id", "1")
@@ -29,10 +30,12 @@ class ContactTest {
 		"12345678901,First,Last,5553334444,1234 Loblolly Lane", // Too Long ID
 		"12345,'',Last,5553334444,1234 Loblolly Lane", // Blank First Name
 		"12345,,Last,5553334444,1234 Loblolly Lane", // Null First Name
-		"12345,FirstFirstF,Last,5553334444,1234 Loblolly Lane", // Too Long First Name
+		"12345,FirstFirstF,Last,5553334444,1234 Loblolly Lane", // Too Long First 
+			// Name
 		"12345,First,'',5553334444,1234 Loblolly Lane", // Blank Last Name
 		"12345,First,,5553334444,1234 Loblolly Lane", // Null Last Name
-		"12345,First,LastLastLas,5553334444,1234 Loblolly Lane", // Too Long Last Name
+		"12345,First,LastLastLas,5553334444,1234 Loblolly Lane", // Too Long Last 
+			// Name
 		"12345,First,Last,'',1234 Loblolly Lane", // Blank Phone
 		"12345,First,Last,,1234 Loblolly Lane", // Null Phone
 		"12345,First,Last,55533344449,1234 Loblolly Lane", // Too Long Phone
@@ -41,10 +44,12 @@ class ContactTest {
 		"12345,First,Last,555333 444,1234 Loblolly Lane", // Phone with Spaces
 		"12345,First,Last,5553334444,''", // Blank Address
 		"12345,First,Last,5553334444,", // Null Address
-		"12345,First,Last,5553334444,1234 Loblolly Lane 1234 Lobloll", // Too Long Address
+		"12345,First,Last,5553334444,1234 Loblolly Lane 1234 Lobloll", // Too Long 
+			// Address
 	})
 	void invalidIdThrowsException() {
-		assertThatThrownBy(() -> new Contact("", "First", "Last", "5553334444", "1234 Loblolly Lane"))
+		assertThatThrownBy(() -> new Contact("", "First", "Last", "5553334444", 
+				"1234 Loblolly Lane"))
 			.isInstanceOf(ValidationException.class);
 	}
 
