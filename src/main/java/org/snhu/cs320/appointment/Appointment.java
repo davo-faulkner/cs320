@@ -11,7 +11,8 @@ public class Appointment {
 	private LocalDate date;
 	private String description;
 	
-	public Appointment(String id, LocalDate date, String description) throws ValidationException {
+	public Appointment(String id, LocalDate date, String description) throws 
+			ValidationException {
 		super();
 		this.id = id;
 		this.date = date;
