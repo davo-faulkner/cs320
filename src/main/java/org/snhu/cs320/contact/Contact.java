@@ -50,7 +50,9 @@ public class Contact {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
+	public void setFirstName(String firstName) throws ValidationException {
+		Validation.validateNotBlank(firstName, "firstName");
+		Validation.validateLength(firstName, "firstName", 1, 10);
 		this.firstName = firstName;
 	}
 
@@ -58,7 +60,9 @@ public class Contact {
 		return lastName;
 	}
 
-	public void setLastName(String lastName) {
+	public void setLastName(String lastName) throws ValidationException {
+		Validation.validateNotBlank(lastName, "lastName");
+		Validation.validateLength(lastName, "lastName", 1, 10);
 		this.lastName = lastName;
 	}
 
@@ -66,7 +70,10 @@ public class Contact {
 		return phone;
 	}
 
-	public void setPhone(String phone) {
+	public void setPhone(String phone) throws ValidationException {
+		Validation.validateNotBlank(phone, "phone");
+		Validation.validateLength(phone, "phone", 10, 10);
+		Validation.validateNumeric(phone, "phone");
 		this.phone = phone;
 	}
 
@@ -74,7 +81,9 @@ public class Contact {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(String address) throws ValidationException {
+		Validation.validateNotBlank(address, "address");
+		Validation.validateLength(address, "address", 1, 30);
 		this.address = address;
 	}
 
