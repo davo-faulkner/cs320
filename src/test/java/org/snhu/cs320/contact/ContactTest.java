@@ -12,17 +12,17 @@ import org.snhu.cs320.exceptions.ValidationException;
 
 class ContactTest {
 	
-	static Contact contact;
+	static Contact CONTACT;
 	
 	@BeforeEach
 	void init() throws ValidationException {
-		contact = new Contact("1", "First", "Last", "5553334444", 
+		CONTACT = new Contact("1", "First", "Last", "5553334444", 
 				"1234 Loblolly Lane");
 	}
 
 	@Test
 	void testConstructorSuccessPath() {
-		assertThat(contact)
+		assertThat(CONTACT)
 			.isNotNull()
 			.hasFieldOrPropertyWithValue("id", "1")
 			.hasFieldOrPropertyWithValue("firstName", "First")
@@ -55,7 +55,7 @@ class ContactTest {
 		"12345,First,Last,5553334444,1234 Loblolly Lane 1234 Lobloll", // Too Long 
 			// Address
 	})
-	void invalidConstructorDataThrowsException(String id, String first, String last, 
+	void testInvalidConstructorDataThrowsException(String id, String first, String last, 
 			String phone, String address) {
 		assertThatThrownBy(() -> new Contact(id, first, last, phone, 
 				address))
@@ -66,8 +66,8 @@ class ContactTest {
 	@ValueSource(strings = {"NewFirst"})
 	void testFirstNameSetterSuccessPath(String newFirstName) 
 			throws ValidationException {
-		contact.setFirstName(newFirstName);
-		assertThat(contact.getFirstName())
+		CONTACT.setFirstName(newFirstName);
+		assertThat(CONTACT.getFirstName())
 			.isNotNull()
 			.isEqualTo(newFirstName);
 	}
@@ -79,7 +79,7 @@ class ContactTest {
 		nullValues = {"null"})
 	void testFirstNameSetterFailPaths(String newFirstName) 
 			throws ValidationException {
-		assertThatThrownBy(() -> contact.setFirstName(newFirstName))
+		assertThatThrownBy(() -> CONTACT.setFirstName(newFirstName))
 			.isInstanceOf(ValidationException.class);
 	}
 	
@@ -87,8 +87,8 @@ class ContactTest {
 	@ValueSource(strings = {"NewLast"})
 	void testLastNameSetterSuccessPath(String newLastName) 
 			throws ValidationException {
-		contact.setLastName(newLastName);
-		assertThat(contact.getLastName())
+		CONTACT.setLastName(newLastName);
+		assertThat(CONTACT.getLastName())
 			.isNotNull()
 			.isEqualTo(newLastName);
 	}
@@ -100,7 +100,7 @@ class ContactTest {
 		nullValues = {"null"})
 	void testLastNameSetterFailPaths(String newLastName) 
 			throws ValidationException {
-		assertThatThrownBy(() -> contact.setLastName(newLastName))
+		assertThatThrownBy(() -> CONTACT.setLastName(newLastName))
 			.isInstanceOf(ValidationException.class);
 	}
 	
@@ -108,8 +108,8 @@ class ContactTest {
 	@ValueSource(strings = {"3334445555"})
 	void testPhoneSetterSuccessPath(String newPhone) 
 			throws ValidationException {
-		contact.setPhone(newPhone);
-		assertThat(contact.getPhone())
+		CONTACT.setPhone(newPhone);
+		assertThat(CONTACT.getPhone())
 			.isNotNull()
 			.isEqualTo(newPhone);
 	}
@@ -124,7 +124,7 @@ class ContactTest {
 		nullValues = {"null"})
 	void testPhoneSetterFailPaths(String newPhone) 
 			throws ValidationException {
-		assertThatThrownBy(() -> contact.setPhone(newPhone))
+		assertThatThrownBy(() -> CONTACT.setPhone(newPhone))
 			.isInstanceOf(ValidationException.class);
 	}
 	
@@ -132,8 +132,8 @@ class ContactTest {
 	@ValueSource(strings = {"NewAddress"})
 	void testAddressSetterSuccessPath(String newAddress) 
 			throws ValidationException {
-		contact.setAddress(newAddress);
-		assertThat(contact.getAddress())
+		CONTACT.setAddress(newAddress);
+		assertThat(CONTACT.getAddress())
 			.isNotNull()
 			.isEqualTo(newAddress);
 	}
@@ -145,7 +145,7 @@ class ContactTest {
 		nullValues = {"null"})
 	void testAddressSetterFailPaths(String newAddress) 
 			throws ValidationException {
-		assertThatThrownBy(() -> contact.setAddress(newAddress))
+		assertThatThrownBy(() -> CONTACT.setAddress(newAddress))
 			.isInstanceOf(ValidationException.class);
 	}
 	

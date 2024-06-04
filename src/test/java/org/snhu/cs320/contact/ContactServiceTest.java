@@ -1,8 +1,6 @@
 package org.snhu.cs320.contact;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.snhu.cs320.exceptions.ValidationException;
@@ -56,7 +54,7 @@ class ContactServiceTest {
 		Contact updated = new Contact("12345", "First", "Last", "2229995555", 
 				"1234 Loblolly Lane");
 		assertThat(ContactService.update("12345", updated)).isTrue();
-		
+				
 		assertThat(ContactService.CONTACT_DATABASE)
 			.extracting("12345")
 			.hasFieldOrPropertyWithValue("phone", "2229995555");

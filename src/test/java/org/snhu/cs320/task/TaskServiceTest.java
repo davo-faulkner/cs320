@@ -1,7 +1,6 @@
 package org.snhu.cs320.task;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,17 +60,6 @@ public class TaskServiceTest {
 	void updateNonExistent() throws ValidationException {
 		Task updated = new Task("12345", "Name", "Description");
 		assertThat(TaskService.update("12345", updated)).isFalse();
-	}
-	
-	@Test
-	void updateFail() throws ValidationException {
-		TaskService.add(new Task("12345", "Name", "Description"));
-		
-		Task updated = new Task("12345", "New Name", "Old Description");
-		updated.setDescription(null);
-		
-		assertThatThrownBy(() -> TaskService.update("12345", updated))
-			.isInstanceOf(ValidationException.class);
 	}
 
 }

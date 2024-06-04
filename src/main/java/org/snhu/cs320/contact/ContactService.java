@@ -28,9 +28,6 @@ public class ContactService {
 		
 		if (existing == null) return false;
 		
-		// Validates updated Contact before adding it to database.
-		updated.validate();
-		
 		existing.setFirstName(updated.getFirstName());
 		existing.setLastName(updated.getLastName());
 		existing.setPhone(updated.getPhone());
