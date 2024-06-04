@@ -36,13 +36,17 @@ public class Task {
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(String name) throws ValidationException {
+		Validation.validateNotBlank(name, "name");
+		Validation.validateLength(name, "name", 1, 20);
 		this.name = name;
 	}
 	public String getDescription() {
 		return description;
 	}
-	public void setDescription(String description) {
+	public void setDescription(String description) throws ValidationException {
+		Validation.validateNotBlank(description, "description");
+		Validation.validateLength(description, "description", 1, 50);
 		this.description = description;
 	}
 	public String getId() {

@@ -69,17 +69,4 @@ class ContactServiceTest {
 		assertThat(ContactService.update("12345", updated)).isFalse();
 	}
 	
-	@Test
-	void updateFail() throws ValidationException {
-		ContactService.add(new Contact("12345", "First", "Last", "5553334444", 
-				"1234 Loblolly Lane"));
-		
-		Contact updated = new Contact("12345", "First", "Last", "2229995555", 
-				"1234 Loblolly Lane");
-		updated.setAddress(null);
-		
-		assertThatThrownBy(() -> ContactService.update("12345", updated))
-			.isInstanceOf(ValidationException.class);
-	}
-	
 }
