@@ -40,7 +40,9 @@ public class Appointment {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDate date) throws ValidationException {
+		Validation.validateNotNull(date, "date");
+		Validation.validateIsPresentOrFuture(date, "date");
 		this.date = date;
 	}
 
@@ -48,7 +50,9 @@ public class Appointment {
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description) throws ValidationException {
+		Validation.validateNotBlank(description, "description");
+		Validation.validateLength(description, "description", 1, 50);
 		this.description = description;
 	}
 
