@@ -30,9 +30,7 @@ public class TaskService {
 		
 		existing.setName(updated.getName());
 		existing.setDescription(updated.getDescription());
-		
-		existing.validate();
-		
+				
 		return true;
 	}
 

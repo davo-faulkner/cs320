@@ -32,9 +32,7 @@ public class ContactService {
 		existing.setLastName(updated.getLastName());
 		existing.setPhone(updated.getPhone());
 		existing.setAddress(updated.getAddress());
-		
-		existing.validate();
-		
+				
 		return true;
 	}
 	
